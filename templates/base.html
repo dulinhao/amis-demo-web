@@ -134,6 +134,29 @@
             }
           },
           {
+              requestAdaptor(api) {
+                if (!api.headers) {
+                    api.headers = {};  // 初始化headers为一个空对象
+                }
+                const match = document.cookie.match(/csrftoken=([^;]+)/);
+                if (match) {
+                    api.headers["X-CSRFToken"] = match[1];
+                } else {
+                    console.warn('CSRF token not found in cookies.');
+                }
+
+                const container  = document.querySelector("ul[class='cxd-AppBcn']");
+                if (container ) {
+                    const items = container.getElementsByTagName("li");
+                    if (items.length > 0) {
+                        const lastItem = items[items.length - 1];
+                        const encodedMenuName = encodeURIComponent(lastItem.innerText);
+                        api.headers["X-Menu-Name"] = encodedMenuName;
+                    }
+                }
+                // 返回修改后的 API 配置
+                return api;
+            },
             // watchRouteChange: fn => {
             //   return history.listen(fn);
             // },

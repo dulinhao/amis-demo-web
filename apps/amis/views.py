@@ -23,3 +23,17 @@ def index(request):
         ]
     }
     return JsonResponse(index_json)
+
+
+def helloworld(request):
+    hello_json = {
+        "type": "page",
+        "initApi": "/api/helloworld/",
+        "body": [
+            {
+                "type": "tpl",
+                "tpl": "Hello ${text}!"
+            }
+        ]
+    }
+    return JsonResponse(hello_json)

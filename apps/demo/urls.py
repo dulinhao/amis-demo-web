@@ -20,4 +20,5 @@ from demo import views
 urlpatterns = [
     path('', views.index, name='home'),
     path('amis/', include('amis.urls')),
+    path('api/', include('api.urls')),
 ]

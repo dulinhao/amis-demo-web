@@ -13,6 +13,11 @@ def site(request):
                         "icon": "fa fa-home",
                         "iconPos": "left",
                         "isDefaultPage": True
+                    },
+                    {
+                        "label": "Hello",
+                        "url": "/hello",
+                        "schemaApi": "/amis/helloworld/"
                     }
                 ]
             }
